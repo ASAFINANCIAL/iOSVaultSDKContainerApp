@@ -1,8 +1,8 @@
 # iOSVaultSDKContainerApp
 
-Before start put the **iosASAVaultSDK.xcframework** into mynativeiosapp directory.
-
-Also put real sdk configuration information in **AppDelegate**
+1. Before start put the **iosASAVaultSDK.xcframework** into mynativeiosapp directory.
+2. Put real sdk configuration information in **AppDelegate**
+3. Copy the valid google services plist file into this directory **iOSVaultSDKContainerApp/mynativeiosapp/GoogleService-Info.plist**
 
 After this example is ready to go. All needed dependencies are pre-installed already.
 
