@@ -6,6 +6,25 @@ import iosASAVaultSDK
 
 class AppDelegate: VaultAppDelegate {
     
+    override func incomeVaultSDKUrl(_ url: String) {
+        self.sdkConfiguration?["initialLink"] = url
+        
+        // Post notification to ContentView to show React Native view
+        NotificationCenter.default.post(name: NSNotification.Name("ShowVaultSDK"), object: nil)
+    }
+    
+    override func incomeVaultSDKNotification(_ notificationId: String) {
+        self.sdkConfiguration?["initialMessageId"] = notificationId
+        NotificationCenter.default.post(name: NSNotification.Name("ShowVaultSDK"), object: nil)
+    }
+    
+    override func handleSDKDidCloseEvent() {
+        super.handleSDKDidCloseEvent()
+        
+        // Post notification to ContentView to hide React Native view
+        NotificationCenter.default.post(name: NSNotification.Name("VaultSDKDidClose"), object: nil)
+    }
+    
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let initialProps: [String: Any] = [
             "dynamicLinkSetup": [
@@ -27,4 +46,11 @@ class AppDelegate: VaultAppDelegate {
         self.sdkConfiguration = initialProps
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
+    
+    override func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        print(userActivity)
+        return true
+    }
+    
 }

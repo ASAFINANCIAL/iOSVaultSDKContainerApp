@@ -19,6 +19,14 @@ struct ContentView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
+                
+                Button("Click to logout user from ASA Vault SDK") {
+                    appDelegate.doLogoutSDK()
+                }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(8)
             }
             .ignoresSafeArea(edges: .all)
             .fullScreenCover(isPresented: $showReactNativeView) {
@@ -27,6 +35,35 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(edges: .all)
+        .onAppear {
+            setupNotificationObserver()
+        }
+        .onDisappear {
+            removeNotificationObserver()
+        }
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("ShowVaultSDK"),
+            object: nil,
+            queue: .main
+        ) { _ in
+            showReactNativeView = true
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("VaultSDKDidClose"),
+            object: nil,
+            queue: .main
+        ) { _ in
+            showReactNativeView = false
+        }
+    }
+    
+    private func removeNotificationObserver() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("ShowVaultSDK"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("VaultSDKDidClose"), object: nil)
     }
 }
 
