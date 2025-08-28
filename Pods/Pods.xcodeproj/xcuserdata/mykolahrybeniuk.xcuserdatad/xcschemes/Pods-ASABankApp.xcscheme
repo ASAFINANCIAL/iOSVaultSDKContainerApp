@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F8EC37C78673149F2B94E8BD9AA8737"
-               BuildableName = "FirebaseSessions.framework"
-               BlueprintName = "FirebaseSessions"
+               BlueprintIdentifier = "8823B353ABC40A6C1D89BF59AF440BAB"
+               BuildableName = "Pods_ASABankApp.framework"
+               BlueprintName = "Pods-ASABankApp"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

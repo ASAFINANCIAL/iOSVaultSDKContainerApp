@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 
-target 'mynativeiosapp' do
+target 'ASABankApp' do
     use_frameworks!
 
     # Firebase
