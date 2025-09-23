@@ -30,9 +30,25 @@
 		E985B804F41FF56C40C55497 /* Pods-ASABankApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASABankApp.debug.xcconfig"; path = "Target Support Files/Pods-ASABankApp/Pods-ASABankApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		5DD153882E82E8C20040AD46 /* Exceptions for "ASABankApp" folder in "Embed Frameworks" phase from "ASABankApp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				iosASAVaultSDK.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
+			};
+			buildPhase = 5DE743F62E6073D700E5339E /* Embed Frameworks */;
+			membershipExceptions = (
+				iosASAVaultSDK.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D8252112E60729B007DB212 /* ASABankApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5DD153882E82E8C20040AD46 /* Exceptions for "ASABankApp" folder in "Embed Frameworks" phase from "ASABankApp" target */,
+			);
 			path = ASABankApp;
 			sourceTree = "<group>";
 		};
