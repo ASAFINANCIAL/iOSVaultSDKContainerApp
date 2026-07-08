@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE10F5D050A648300D1D8BA9 /* Pods_ASABankApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F547C4A8703CC884144E594 /* Pods_ASABankApp.framework */; };
+		5D7AA7762FFE8D7E00546D71 /* ASAVaultSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7AA7752FFE8D7E00546D71 /* ASAVaultSDK */; };
+		AD310272630AA74C3D8C2627 /* Pods_ASABankApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48022B33E68765D3B0DAB4 /* Pods_ASABankApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5DE743F62E6073D700E5339E /* Embed Frameworks */ = {
+		5DEC25F12FF56684007D6901 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -24,31 +25,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F547C4A8703CC884144E594 /* Pods_ASABankApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASABankApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		475C80E7855FB75A631FD058 /* Pods-ASABankApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASABankApp.debug.xcconfig"; path = "Target Support Files/Pods-ASABankApp/Pods-ASABankApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5D82520F2E60729B007DB212 /* ASABankApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASABankApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1651AEFFAC0D4E96249C85F /* Pods-ASABankApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASABankApp.release.xcconfig"; path = "Target Support Files/Pods-ASABankApp/Pods-ASABankApp.release.xcconfig"; sourceTree = "<group>"; };
-		E985B804F41FF56C40C55497 /* Pods-ASABankApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASABankApp.debug.xcconfig"; path = "Target Support Files/Pods-ASABankApp/Pods-ASABankApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5E2301548E5052EEDA323CB3 /* Pods-ASABankApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASABankApp.release.xcconfig"; path = "Target Support Files/Pods-ASABankApp/Pods-ASABankApp.release.xcconfig"; sourceTree = "<group>"; };
+		EF48022B33E68765D3B0DAB4 /* Pods_ASABankApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASABankApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		5DD153882E82E8C20040AD46 /* Exceptions for "ASABankApp" folder in "Embed Frameworks" phase from "ASABankApp" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			attributesByRelativePath = {
-				iosASAVaultSDK.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
-			};
-			buildPhase = 5DE743F62E6073D700E5339E /* Embed Frameworks */;
-			membershipExceptions = (
-				iosASAVaultSDK.xcframework,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D8252112E60729B007DB212 /* ASABankApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				5DD153882E82E8C20040AD46 /* Exceptions for "ASABankApp" folder in "Embed Frameworks" phase from "ASABankApp" target */,
-			);
 			path = ASABankApp;
 			sourceTree = "<group>";
 		};
@@ -59,7 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE10F5D050A648300D1D8BA9 /* Pods_ASABankApp.framework in Frameworks */,
+				5D7AA7762FFE8D7E00546D71 /* ASAVaultSDK in Frameworks */,
+				AD310272630AA74C3D8C2627 /* Pods_ASABankApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +58,7 @@
 				5D8252112E60729B007DB212 /* ASABankApp */,
 				5D8252102E60729B007DB212 /* Products */,
 				93EC4BB5C5FA660422FDA1BE /* Pods */,
-				9FB88DAE2ADBE99F4238CCAE /* Frameworks */,
+				873ABDD4C56E65890BA77D66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,21 +70,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		873ABDD4C56E65890BA77D66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF48022B33E68765D3B0DAB4 /* Pods_ASABankApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		93EC4BB5C5FA660422FDA1BE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E985B804F41FF56C40C55497 /* Pods-ASABankApp.debug.xcconfig */,
-				B1651AEFFAC0D4E96249C85F /* Pods-ASABankApp.release.xcconfig */,
+				475C80E7855FB75A631FD058 /* Pods-ASABankApp.debug.xcconfig */,
+				5E2301548E5052EEDA323CB3 /* Pods-ASABankApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		9FB88DAE2ADBE99F4238CCAE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0F547C4A8703CC884144E594 /* Pods_ASABankApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,12 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D82521A2E60729C007DB212 /* Build configuration list for PBXNativeTarget "ASABankApp" */;
 			buildPhases = (
-				6FBB0EAC383C097D9B2499B7 /* [CP] Check Pods Manifest.lock */,
+				7C88C110C38EBC9B8CEB00FB /* [CP] Check Pods Manifest.lock */,
 				5D82520B2E60729B007DB212 /* Sources */,
 				5D82520C2E60729B007DB212 /* Frameworks */,
 				5D82520D2E60729B007DB212 /* Resources */,
-				5DE743F62E6073D700E5339E /* Embed Frameworks */,
-				F49A9B37B20228626DFB700C /* [CP] Embed Pods Frameworks */,
+				5DEC25F12FF56684007D6901 /* Embed Frameworks */,
+				CBAA0644D9ADE6FB6208DEE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +137,9 @@
 			);
 			mainGroup = 5D8252062E60729B007DB212;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5D7AA7742FFE8D7E00546D71 /* XCRemoteSwiftPackageReference "ios-asavaultsdk-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5D8252102E60729B007DB212 /* Products */;
 			projectDirPath = "";
@@ -172,7 +161,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6FBB0EAC383C097D9B2499B7 /* [CP] Check Pods Manifest.lock */ = {
+		7C88C110C38EBC9B8CEB00FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -194,7 +183,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F49A9B37B20228626DFB700C /* [CP] Embed Pods Frameworks */ = {
+		CBAA0644D9ADE6FB6208DEE0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -202,9 +191,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ASABankApp/Pods-ASABankApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ASABankApp/Pods-ASABankApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -347,7 +340,7 @@
 		};
 		5D82521B2E60729C007DB212 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E985B804F41FF56C40C55497 /* Pods-ASABankApp.debug.xcconfig */;
+			baseConfigurationReference = 475C80E7855FB75A631FD058 /* Pods-ASABankApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -356,6 +349,11 @@
 				DEVELOPMENT_TEAM = 77RK2794S2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ASABankApp",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Enabling Face ID allows you quick access to RealApp";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to get your location...";
@@ -380,7 +378,7 @@
 		};
 		5D82521C2E60729C007DB212 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1651AEFFAC0D4E96249C85F /* Pods-ASABankApp.release.xcconfig */;
+			baseConfigurationReference = 5E2301548E5052EEDA323CB3 /* Pods-ASABankApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -389,6 +387,11 @@
 				DEVELOPMENT_TEAM = 77RK2794S2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ASABankApp",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Enabling Face ID allows you quick access to RealApp";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to get your location...";
@@ -433,6 +436,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D7AA7742FFE8D7E00546D71 /* XCRemoteSwiftPackageReference "ios-asavaultsdk-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ASAFINANCIAL/ios-asavaultsdk-spm";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D7AA7752FFE8D7E00546D71 /* ASAVaultSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D7AA7742FFE8D7E00546D71 /* XCRemoteSwiftPackageReference "ios-asavaultsdk-spm" */;
+			productName = ASAVaultSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5D8252072E60729B007DB212 /* Project object */;
 }
