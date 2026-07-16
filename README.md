@@ -6,7 +6,7 @@ A comprehensive iOS container application that demonstrates the integration of t
 
 The **iOS Vault SDK Container App** is designed to:
 
-- **Demonstrate SDK Integration**: Show how to properly integrate the `iosASAVaultSDK.xcframework` into a native iOS application
+- **Demonstrate SDK Integration**: Show how to integrate the ASA Vault SDK via the private Swift Package (recommended) or by embedding the `iosASAVaultSDK.xcframework` directly
 - **Provide Reference Implementation**: Serve as a working example for developers implementing ASA Vault services
 - **Handle Deep Links**: Process incoming vault URLs and notifications automatically
 - **Manage User Sessions**: Handle user authentication and logout functionality
@@ -33,19 +33,35 @@ Deep Link/Notification → AppDelegate → NotificationCenter → ContentView �
 
 ### Prerequisites
 
-1. **iOS Development Environment**: Xcode 14+ with iOS 13+ deployment target
-2. **ASA Vault SDK**: Access to `iosASAVaultSDK.xcframework`
-3. **Firebase Project**: Valid Google Services configuration
-4. **ASA Credentials**: Valid subscription key, fintech code, and authorization key
+1. **iOS Development Environment**: Xcode 16.3+ (this project's deployment target is iOS 18.0)
+2. **ASA Vault SDK Access**: GitHub access to the private [ios-asavaultsdk-spm](https://github.com/ASAFINANCIAL/ios-asavaultsdk-spm) repository (SSH key or personal access token), or a copy of the SDK xcframeworks for direct embedding
+3. **CocoaPods**: Required for the SDK's native dependencies (Firebase, Sentry, Branch, Lottie) in both integration options
+4. **Firebase Project**: Valid Google Services configuration
+5. **ASA Credentials**: Valid subscription key, fintech code, application code, and authorization key
 
 ### Installation Steps
 
-1. **Add the iOS Vault SDK Framework**
+1. **Add the ASA Vault SDK** — choose one of the two options:
+
+   **Option A — Private Swift Package (recommended, used by this app)**
+
+   In Xcode: **File → Add Package Dependencies…**, enter the repository URL:
+
+   ```
+   https://github.com/ASAFINANCIAL/ios-asavaultsdk-spm
+   ```
+
+   Select the `main` branch (or a release tag), then add the **ASAVaultSDK** product to your app target. Xcode will prompt for GitHub credentials since the repository is private. The package bundles both `iosASAVaultSDK.xcframework` and `hermes.xcframework`, so no manual framework handling is needed.
+
+   **Option B — Direct xcframework embedding**
+
+   Copy **both** xcframeworks into your project (the SDK requires the Hermes engine alongside it):
 
    ```bash
-   # Place the framework in the ASABankApp directory
-   cp iosASAVaultSDK.xcframework ASABankApp/
+   cp -R iosASAVaultSDK.xcframework hermes.xcframework YourApp/
    ```
+
+   Then drag them into Xcode and add both to your target under **General → Frameworks, Libraries, and Embedded Content** with **Embed & Sign**.
 
 2. **Configure Firebase**
 
@@ -69,6 +85,20 @@ Deep Link/Notification → AppDelegate → NotificationCenter → ContentView �
    ```bash
    pod install
    ```
+
+   > ⚠️ **Important**: the Podfile's `post_install` hook that sets `BUILD_LIBRARY_FOR_DISTRIBUTION = YES` for `lottie-ios` is required. The SDK binary is built with library evolution enabled and calls Lottie through resilient dispatch thunks — without this setting the app crashes at launch with `dyld: Symbol not found`. If you are integrating into your own project, replicate this hook in your Podfile:
+   >
+   > ```ruby
+   > post_install do |installer|
+   >   installer.pods_project.targets.each do |target|
+   >     if ['lottie-ios'].include?(target.name)
+   >       target.build_configurations.each do |config|
+   >         config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+   >       end
+   >     end
+   >   end
+   > end
+   > ```
 
 5. **Open Workspace**
    ```bash
@@ -122,7 +152,8 @@ let initialProps: [String: Any] = [
         "AsaFintechCode": 1,
         "ApplicationCode": 1,
         "AuthorizationKey": "AuthorizationKey_PLACEHOLDER",
-        "SkipAuth": false
+        "SkipAuth": false,
+        "debugEnabled": true
     ]
 ]
 ```
@@ -137,20 +168,26 @@ struct ContentView: View {
     @State private var appDelegate: AppDelegate
 
     var body: some View {
-        VStack {
-            Button("Click to start ASA Vault SDK") {
-                showReactNativeView = true
-            }
+        NavigationView {
+            VStack {
+                Button("Click to start ASA Vault SDK") {
+                    showReactNativeView = true
+                }
 
-            Button("Click to logout user from ASA Vault SDK") {
-                appDelegate.doLogoutSDK()
+                Button("Click to logout user from ASA Vault SDK") {
+                    appDelegate.doLogoutSDK()
+                }
             }
-        }
-        .fullScreenCover(isPresented: $showReactNativeView) {
-            ReactNativeView(appDelegate: appDelegate)
+            .fullScreenCover(isPresented: $showReactNativeView) {
+                ReactNativeView(appDelegate: appDelegate)
+                    .ignoresSafeArea(edges: .all)
+            }
         }
         .onAppear {
             setupNotificationObserver()
+        }
+        .onDisappear {
+            removeNotificationObserver()
         }
     }
 }
@@ -228,21 +265,28 @@ private func setupNotificationObserver() {
 
 ## 🔧 Dependencies
 
-- **Firebase**: Analytics, Performance, Messaging, and Dynamic Links
-- **iosASAVaultSDK**: The core ASA Vault SDK framework
-- **SwiftUI**: Modern iOS UI framework
-- **UIKit**: For React Native bridge components
+The SDK itself is consumed via the private Swift Package (or embedded xcframeworks). Its native dependencies are installed through CocoaPods, pinned to the versions the SDK binary was built against:
+
+| Dependency | Version | Purpose |
+| --- | --- | --- |
+| `Firebase/Analytics`, `Firebase/Performance`, `Firebase/Messaging`, `Firebase/Firestore` | 11.15.0 | Analytics, performance monitoring, push messaging, data sync |
+| `BranchSDK` | 3.14.0 | Deep linking (replaces the discontinued Firebase Dynamic Links) |
+| `Sentry` | 8.58.0 | Crash reporting |
+| `lottie-ios` | 4.6.0 | Animations (must be built with `BUILD_LIBRARY_FOR_DISTRIBUTION = YES` — see step 4) |
+
+Plus the frameworks that ship with the SDK package: **iosASAVaultSDK** (the core SDK) and **Hermes** (the React Native JS engine), and Apple's **SwiftUI**/**UIKit** for the app shell and React Native bridge.
 
 ## 📋 Configuration Checklist
 
-- [ ] `iosASAVaultSDK.xcframework` placed in ASABankApp directory
+- [ ] SDK added — either the `ios-asavaultsdk-spm` package (product **ASAVaultSDK**) or `iosASAVaultSDK.xcframework` + `hermes.xcframework` embedded with Embed & Sign
 - [ ] `GoogleService-Info.plist` configured with your Firebase project
 - [ ] Real subscription key updated in AppDelegate
 - [ ] ASA Fintech Code configured
 - [ ] Application Code configured
 - [ ] Authorization Key updated
+- [ ] `pod install` run, including the `lottie-ios` `post_install` hook
 - [ ] Bundle identifiers match your app configuration
 
 ## 🚀 Ready to Go
 
-After completing the setup steps above, your iOS Vault SDK Container App is ready to run. All necessary dependencies are pre-installed, and the integration points are fully configured for seamless operation.
+After completing the setup steps above, your iOS Vault SDK Container App is ready to run. This repository comes pre-wired with the Swift Package integration and committed Pods, so cloning it, updating the credentials, and opening `ASABankApp.xcworkspace` is enough to build and run the demo.
